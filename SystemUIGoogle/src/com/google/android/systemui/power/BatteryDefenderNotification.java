@@ -59,6 +59,8 @@ class BatteryDefenderNotification {
     private int mBatteryLevel;
     private SharedPreferences mSharedPreferences;
 
+    private static final boolean DEBUG = false;
+
     BatteryDefenderNotification(Context context, UiEventLogger uiEventLogger) {
         mContext = context;
         mUiEventLogger = uiEventLogger;
@@ -84,7 +86,7 @@ class BatteryDefenderNotification {
             z = true;
         }
         boolean isFullyCharged = PowerUtils.isFullyCharged(intent);
-        Log.d(TAG, "isPlugged: " + z2 + " | isOverheated: " + z + " | defenderEnabled: " + mDefenderEnabled + " | isCharged: " + isFullyCharged);
+        if (DEBUG) Log.d(TAG, "isPlugged: " + z2 + " | isOverheated: " + z + " | defenderEnabled: " + mDefenderEnabled + " | isCharged: " + isFullyCharged);
         if (isFullyCharged && mPostNotificationVisible) {
             cancelPostNotification();
         }
